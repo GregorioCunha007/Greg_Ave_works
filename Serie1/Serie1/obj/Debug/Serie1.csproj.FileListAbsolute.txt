@@ -1,0 +1,14 @@
+C:\Users\Greg\Desktop\Ave\Serie1\Serie1\bin\Debug\Serie1.exe.config
+C:\Users\Greg\Desktop\Ave\Serie1\Serie1\bin\Debug\Serie1.exe
+C:\Users\Greg\Desktop\Ave\Serie1\Serie1\bin\Debug\Serie1.pdb
+C:\Users\Greg\Desktop\Ave\Serie1\Serie1\obj\Debug\Serie1.csprojResolveAssemblyReference.cache
+C:\Users\Greg\Desktop\Ave\Serie1\Serie1\obj\Debug\Serie1.exe
+C:\Users\Greg\Desktop\Ave\Serie1\Serie1\obj\Debug\Serie1.pdb
+C:\Users\Greg\Desktop\Ave\Serie1\Serie1\bin\Debug\Jsonfier.dll
+C:\Users\Greg\Desktop\Ave\Greg_Ave_works\Serie1\Serie1\bin\Debug\Serie1.exe.config
+C:\Users\Greg\Desktop\Ave\Greg_Ave_works\Serie1\Serie1\obj\Debug\Serie1.exe
+C:\Users\Greg\Desktop\Ave\Greg_Ave_works\Serie1\Serie1\obj\Debug\Serie1.pdb
+C:\Users\Greg\Desktop\Ave\Greg_Ave_works\Serie1\Serie1\bin\Debug\Serie1.exe
+C:\Users\Greg\Desktop\Ave\Greg_Ave_works\Serie1\Serie1\bin\Debug\Serie1.pdb
+C:\Users\Greg\Desktop\Ave\Greg_Ave_works\Serie1\Serie1\bin\Debug\Jsonfier.dll
+C:\Users\Greg\Desktop\Ave\Greg_Ave_works\Serie1\Serie1\obj\Debug\Serie1.csprojResolveAssemblyReference.cache
