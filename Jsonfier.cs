@@ -1,71 +1,84 @@
 using System;
+using System.Collections;
+using Jsonzai.Reflect;
 using System.Reflection;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Jsonzai.Reflect
+namespace Serie1
 {
-    public class Jsonfier
+    class Program
     {
-
-        private static bool dealingWithArray = false;
-        private static bool dealingWithObject = true;
-        private static BindingFlags fieldsFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
-        private static StringBuilder allFields = new StringBuilder();
-
-        public static string ToJson(object src)
+        static void Main(string[] args)
         {
-            if (src == null || src.GetType().IsPrimitive || src.GetType() == typeof(String))
-                Console.WriteLine("Recursion ended");
 
-           
-            String result = RunTroughFields(src);
+            Student s1 = new Student("gustavo", 40622);
 
-            return result;
-        }
-
-        private static string RunTroughFields(object instance)
-        {
-            
-            FieldInfo[] fields = instance.GetType().GetFields(fieldsFlags);
-
-            foreach ( FieldInfo f in fields)
-            {
-
-                if (f.GetType().IsPrimitive)
-                {
-                    if (dealingWithObject)
-                        allFields.Append(f.Name + ":" + f.GetValue(instance) + ", ");
-                    else if (dealingWithArray)
-                        allFields.Append(f.GetValue(instance) + ","); // Change
-                }
-                else if( f.GetType().IsArray)
-                {
-                    DealWithArray(f.GetValue(instance));
-                }
-                else
-                {
-                    DealWithObject(f.GetValue(instance));
-                }
-                
-            }
-
-            String ret = allFields.ToString();
-            return ret; 
-          }
-
-        private static void DealWithObject(object new_src)
-        {
-            dealingWithObject = true; dealingWithArray = false;
-            ToJson(new_src);
-        }
-
-        private static void DealWithArray(object new_src)
-        {
-            dealingWithObject = false; dealingWithArray = true;
-            ToJson(new_src);
+            Console.WriteLine(Teste.ToJson(s1));
         }
     }
+
+    class Student
+    {
+
+        public int student_number;
+        public string name;
+        public int[] array = { 1, 2, 3 };
+        public object[] ar = { "hugo", new int[] { 4, 5, 6 }, "morticia" };
+
+        public Student(string n, int x)
+        {
+            name = n;
+            student_number = x;
+        }
+    }
+
+    class Teste
+    {
+
+
+        private static BindingFlags fieldsFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
+        private static StringBuilder finalJsonObject = new StringBuilder();
+        
+
+        public static string ToJson(object src,)
+        {
+
+            Type t = src.GetType();
+
+            if( t.IsPrimitive || t == typeof(string) )
+            {
+                finalJsonObject.Append(src.ToString());
+            }
+            else if ( t.IsArray )
+            {
+                IEnumerable sequence = (IEnumerable)src;
+                IEnumerator it = sequence.GetEnumerator();
+                finalJsonObject.Append('[');
+                while ( it.MoveNext() )
+                {
+                    ToJson(it.Current);
+                    finalJsonObject.Append(',');
+                }
+                finalJsonObject.Remove(finalJsonObject.Length - 1, 1);
+                finalJsonObject.Append(']');
+
+            }
+            else // Is Object
+            {
+                FieldInfo [] fields_ = t.GetFields(fieldsFlags);
+                finalJsonObject.Append('{');
+                foreach ( FieldInfo f in fields_ )
+                {
+                    ToJson(f.GetValue(src));
+                    finalJsonObject.Append(',');
+                }
+                finalJsonObject.Remove(finalJsonObject.Length - 1, 1);
+                finalJsonObject.Append('}');
+            }
+
+            return finalJsonObject.ToString();   
+        }
+            
+    }
+
 }

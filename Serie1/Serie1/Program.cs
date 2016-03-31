@@ -1,7 +1,8 @@
 ﻿using System;
-using Jsonzai.Reflect;
 using System.Reflection;
 using System.Text;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace Serie1
 {
@@ -11,18 +12,37 @@ namespace Serie1
         {
 
             Student s1 = new Student("gustavo", 40622);
-
-            Console.WriteLine(Teste.ToJson(s1));
+            
+            Console.WriteLine(Jsonfier.ToJson(s1, 0));
         }
     }
 
     class Student
     {
-
+       
         public int student_number;
         public string name;
-        public int[] array = { 1, 2, 3 };
-        public object[] ar = { "hugo", new int[] { 4,5,6 }, "morticia" };
+        public int[] INTEIROS = { 1, 2, 3 };
+        public object[] CENAS = { "hugo", new int[] { 4, 5, 6 }, "morticia" };
+        public float t_id = 90.33f;
+        public object[] bbva = { new int[] { 7, 8, 9 }, new object [] { "balelas", new int[] { 12, 13, 15 }, "shin" }};
+
+        public event Action dolceDoge
+        {
+            add
+            {
+
+            }
+            remove
+            {
+
+            }
+        }
+
+        public String tt
+        {
+            get; set;
+        }
 
         public Student(string n, int x)
         {
@@ -31,62 +51,81 @@ namespace Serie1
         }
     }
 
-    class Teste
+    class Jsonfier
     {
-        
-        private static BindingFlags fieldsFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
-        private static StringBuilder allFields = new StringBuilder();
+        private static StringBuilder finalJsonObject = new StringBuilder();
+        private static IDictionary<int, Mapper> map = new Dictionary<int,Mapper>();
 
-        public static string ToJson(object src)
+        static Jsonfier()
         {
-            if (src == null || src.GetType().IsPrimitive || src.GetType() == typeof(String))
-                Console.WriteLine("Recursion ended");
-
-
-            String result = RunTroughFields(src);
-
-            return result;
+            map.Add(0, new Fields());
+            map.Add(1, new Properties());
+            map.Add(2, new Events());
+            map.Add(3, new Methods());
         }
 
-        private static string RunTroughFields(object instance)
+        public static string ToJson(object src,int typeOfMember)
         {
-
-            FieldInfo[] fields = instance.GetType().GetFields(fieldsFlags);
-
-            foreach (FieldInfo f in fields)
+            if (src == null)
             {
-               
-                if ( f.FieldType.IsPrimitive || f.FieldType == typeof(string))
+                finalJsonObject.Append("No Value");
+                return finalJsonObject.ToString();
+            }
+
+            Type t = src.GetType();
+            
+            if (t.IsPrimitive)
+            {
+                finalJsonObject.Append(src);
+            }
+            else if (t == typeof(string))
+            {
+                finalJsonObject.Append("\"" + src + "\"");
+
+            }else if( t.IsArray )
+            {
+                IEnumerable seq = (IEnumerable)src;
+                IEnumerator it = seq.GetEnumerator();
+                finalJsonObject.Append('[');
+                while( it.MoveNext() )
                 {
-                    allFields.Append(f.Name + ":" + f.GetValue(instance) + ", ");  
+                    ToJson(it.Current,typeOfMember);
+                    finalJsonObject.Append(',');
                 }
-                else if (f.FieldType.IsArray)
+                finalJsonObject.Remove(finalJsonObject.Length - 1, 1);
+                finalJsonObject.Append(']');
+            }
+            else // Is object
+            {
+
+                Mapper mapped;
+                bool valid = map.TryGetValue(typeOfMember,out mapped);
+                
+                if( !valid )
                 {
-                    allFields.Append(DealWithArray(f.GetValue(instance)));
+                    return "Wrong Option";
                 }
                 else
                 {
-                    allFields.Append(DealWithObject(f.GetValue(instance)));
+                    MemberInfo [] mI = mapped.m(src);
+                    finalJsonObject.Append('{');
+                    finalJsonObject.Append('\n');
+                    foreach (MemberInfo member in mI)
+                    {
+                        ToJson(member.Name,typeOfMember);
+                        finalJsonObject.Append(":");
+                        ToJson(mapped.GetInfoMember(src, member),typeOfMember);
+                        finalJsonObject.Append(',');
+                        finalJsonObject.Append('\n');
+                    }
+                    finalJsonObject.Remove(finalJsonObject.Length - 2, 1);
+                    finalJsonObject.Append('}');
+                    finalJsonObject.Append('\n');
                 }
-                allFields.Append("\n");
+
             }
 
-            String ret = allFields.ToString();
-            return ret;
-        }
-
-        private static string DealWithObject(object new_src)
-        {
-            ObjectUnit ret = new ObjectUnit(new_src);
-            return ret.ToString();
-         //   ToJson(new_src);
-        }
-
-        private static string DealWithArray(object new_src)
-        {
-            ArrayUnit ret =  new ArrayUnit(new_src);
-            return ret.ToString();
-          //  ToJson(new_src); 
+            return finalJsonObject.ToString();
         }
     }
 }

@@ -12,3 +12,10 @@ C:\Users\Greg\Desktop\Ave\Greg_Ave_works\Serie1\Serie1\bin\Debug\Serie1.exe
 C:\Users\Greg\Desktop\Ave\Greg_Ave_works\Serie1\Serie1\bin\Debug\Serie1.pdb
 C:\Users\Greg\Desktop\Ave\Greg_Ave_works\Serie1\Serie1\bin\Debug\Jsonfier.dll
 C:\Users\Greg\Desktop\Ave\Greg_Ave_works\Serie1\Serie1\obj\Debug\Serie1.csprojResolveAssemblyReference.cache
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie1\Serie1\bin\Debug\Serie1.exe.config
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie1\Serie1\obj\Debug\Serie1.exe
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie1\Serie1\obj\Debug\Serie1.pdb
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie1\Serie1\bin\Debug\Serie1.exe
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie1\Serie1\bin\Debug\Serie1.pdb
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie1\Serie1\bin\Debug\Jsonfier.dll
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie1\Serie1\obj\Debug\Serie1.csprojResolveAssemblyReference.cache
