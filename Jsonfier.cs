@@ -1,84 +1,154 @@
 using System;
+using System.Collections.Generic;
 using System.Collections;
-using Jsonzai.Reflect;
 using System.Reflection;
 using System.Text;
 
 namespace Serie1
 {
-    class Program
+    public class Jsonfier
     {
-        static void Main(string[] args)
-        {
-
-            Student s1 = new Student("gustavo", 40622);
-
-            Console.WriteLine(Teste.ToJson(s1));
-        }
-    }
-
-    class Student
-    {
-
-        public int student_number;
-        public string name;
-        public int[] array = { 1, 2, 3 };
-        public object[] ar = { "hugo", new int[] { 4, 5, 6 }, "morticia" };
-
-        public Student(string n, int x)
-        {
-            name = n;
-            student_number = x;
-        }
-    }
-
-    class Teste
-    {
-
-
-        private static BindingFlags fieldsFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
         private static StringBuilder finalJsonObject = new StringBuilder();
-        
+        private static Dictionary<int, Mapper> map = new Dictionary<int, Mapper>();
 
-        public static string ToJson(object src,)
+        static Jsonfier()
         {
+            map.Add(0, new Fields());
+            map.Add(1, new Properties());
+            map.Add(2, new Events());
+            map.Add(3, new Methods());
+        }
+
+        public static string ToJson(object src, int typeOfMember)
+        {
+            if (src == null)
+            {
+                finalJsonObject.Append("No Value");
+                return finalJsonObject.ToString();
+            }
 
             Type t = src.GetType();
 
-            if( t.IsPrimitive || t == typeof(string) )
+            if (t.IsPrimitive)
             {
-                finalJsonObject.Append(src.ToString());
+                finalJsonObject.Append(src);
             }
-            else if ( t.IsArray )
+            else if (t == typeof(string))
             {
-                IEnumerable sequence = (IEnumerable)src;
-                IEnumerator it = sequence.GetEnumerator();
+                finalJsonObject.Append("\"" + src + "\"");
+
+            }
+            else if (t.IsArray)
+            {
+                IEnumerable seq = (IEnumerable)src;
+                IEnumerator it = seq.GetEnumerator();
                 finalJsonObject.Append('[');
-                while ( it.MoveNext() )
+                while (it.MoveNext())
                 {
-                    ToJson(it.Current);
+                    ToJson(it.Current, typeOfMember);
                     finalJsonObject.Append(',');
                 }
                 finalJsonObject.Remove(finalJsonObject.Length - 1, 1);
                 finalJsonObject.Append(']');
-
             }
-            else // Is Object
+            else // Is object
             {
-                FieldInfo [] fields_ = t.GetFields(fieldsFlags);
-                finalJsonObject.Append('{');
-                foreach ( FieldInfo f in fields_ )
+
+                Mapper mapped;
+                bool valid = map.TryGetValue(typeOfMember, out mapped);
+
+                if (!valid)
                 {
-                    ToJson(f.GetValue(src));
-                    finalJsonObject.Append(',');
+                    return "Wrong Option";
                 }
-                finalJsonObject.Remove(finalJsonObject.Length - 1, 1);
-                finalJsonObject.Append('}');
+                else
+                {
+                    MemberInfo[] mI = mapped.m(src);
+                    finalJsonObject.Append('{');
+                    finalJsonObject.Append('\n');
+                    foreach (MemberInfo member in mI)
+                    {
+                        ToJson(member.Name, typeOfMember);
+                        finalJsonObject.Append(":");
+                        ToJson(mapped.GetInfoMember(src, member), typeOfMember);
+                        finalJsonObject.Append(',');
+                        finalJsonObject.Append('\n');
+                    }
+                    finalJsonObject.Remove(finalJsonObject.Length - 2, 1);
+                    finalJsonObject.Append('}');
+                    finalJsonObject.Append('\n');
+                }
+
             }
 
-            return finalJsonObject.ToString();   
+            return finalJsonObject.ToString();
         }
-            
+
+        abstract class Mapper
+        {
+            public abstract MemberInfo[] m(object target);
+            public abstract object GetInfoMember(object instance, MemberInfo m);
+        }
+
+        class Fields : Mapper
+        {
+            public override MemberInfo[] m(object target)
+            {
+                FieldInfo[] fields = target.GetType().GetFields();
+                return fields;
+            }
+
+            public override object GetInfoMember(object instance, MemberInfo m)
+            {
+                FieldInfo f = (FieldInfo)m;
+                return f.GetValue(instance);
+            }
+        }
+
+        class Properties : Mapper
+        {
+            public override MemberInfo[] m(object target)
+            {
+                PropertyInfo[] props = target.GetType().GetProperties();
+                return props;
+            }
+
+            public override object GetInfoMember(object instance, MemberInfo m)
+            {
+                PropertyInfo prop = (PropertyInfo)m;
+                return prop.GetValue(instance);
+            }
+        }
+
+        class Events : Mapper
+        {
+            public override MemberInfo[] m(object target)
+            {
+                EventInfo[] events = target.GetType().GetEvents();
+                return events;
+            }
+
+            public override object GetInfoMember(object instance, MemberInfo m)
+            {
+                EventInfo eventt = (EventInfo)m;
+                return eventt.EventHandlerType.ToString();
+            }
+        }
+
+        class Methods : Mapper
+        {
+            public override MemberInfo[] m(object target)
+            {
+                MethodInfo[] methods = target.GetType().GetMethods();
+                return methods;
+            }
+
+            public override object GetInfoMember(object instance, MemberInfo m)
+            {
+                MethodInfo method = (MethodInfo)m;
+                return method.ReturnType.ToString();
+            }
+        }
     }
 
 }
