@@ -32,12 +32,12 @@ public class Course
 public class Teacher
 {
 
-    public Student TalkToStudent
+    public Student talk_to_student
     {
         get;set;
     }
 
-    public event Action ExpellStudent
+    public event Action expell_student
     {
         add{
 
@@ -49,6 +49,6 @@ public class Teacher
 
     public Teacher(Student s1)
     {
-        TalkToStudent = s1;
+        talk_to_student = s1;
     }
 }
