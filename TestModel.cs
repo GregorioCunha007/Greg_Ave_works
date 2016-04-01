@@ -28,3 +28,27 @@ public class Course
         this.students = students;
     }
 }
+
+public class Teacher
+{
+
+    public Student TalkToStudent
+    {
+        get;set;
+    }
+
+    public event Action ExpellStudent
+    {
+        add{
+
+        }
+        remove{
+
+        }
+    }
+
+    public Teacher(Student s1)
+    {
+        TalkToStudent = s1;
+    }
+}

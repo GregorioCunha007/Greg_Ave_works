@@ -10,8 +10,7 @@ namespace Serie1
         {
             JsonfierTest testing = new JsonfierTest();
             testing.TestJsonfierStudent();
-            //Student student1 = new Student(40622, "Joao Carlos");
-            //Console.WriteLine(Jsonfier.ToJson(student1, 0));
+            
         }
     }
 
@@ -25,10 +24,14 @@ namespace Serie1
         {
             Student student1 = new Student(40622, "Joao Carlos");
 
-            /*Field test */ 
+            /* Field test */ 
             string expected = "{\n\"student_number\":40622,\n\"student_name\":\"Joao Carlos\",\n\"disciplines\":[\"Ave\",\"SO\",\"Mpd\",\"Redes\",\"LS\"]\n}\n";
             string result = Jsonfier.ToJson(student1, 0); 
             Assert.AreEqual(expected, result);
+
+            /* Propriety test */
+
+
 
         }
 
