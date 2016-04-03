@@ -22,3 +22,7 @@ C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie1\Serie1\obj\De
 C:\Users\Greg\Desktop\Ave\Greg_Ave_works\Serie1\Serie1\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Users\Greg\Desktop\Ave\Greg_Ave_works\Serie1\Serie1\bin\Debug\TestModel.dll
 C:\Users\Greg\Desktop\Ave\Greg_Ave_works\Serie1\Serie1\bin\Debug\Jsonfier.pdb
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie1\Serie1\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie1\Serie1\bin\Debug\TestModel.dll
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie1\Serie1\bin\Debug\Jsonfier.pdb
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie1\Serie1\bin\Debug\TestModel.pdb

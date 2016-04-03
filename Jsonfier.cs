@@ -19,6 +19,11 @@ namespace Serie1
             map.Add(3, new Methods());
         }
 
+        public static void Reset()
+        {
+            finalJsonObject = new StringBuilder();
+        }
+
         public static string ToJson(object src, int typeOfMember)
         {
             if (src == null)
@@ -116,8 +121,24 @@ namespace Serie1
         public override object GetInfoMember(object instance, MemberInfo m)
         {
             PropertyInfo prop = (PropertyInfo)m;
-            return prop.GetValue(instance);
-        }
+            PropertyInfo[] future_obj;
+
+                if (prop.GetValue(instance).GetType().IsPrimitive || prop.GetValue(instance).GetType() == typeof(string))
+                {
+                    return prop.GetValue(instance);
+                }
+                future_obj = prop.GetValue(instance).GetType().GetProperties();
+
+                /* This is necessary for when the object our property contains doesnt contain any properties*/
+                if (future_obj.Length == 0)
+                {
+                    return prop.GetValue(instance).ToString();         
+                }    
+                else
+                {
+                    return prop.GetValue(instance);
+                }        
+         }
     }
 
     class Events : Mapper
@@ -148,6 +169,6 @@ namespace Serie1
             MethodInfo method = (MethodInfo)m;
             return method.ReturnType.ToString();
         }
-    }
+     }
    }
 }
