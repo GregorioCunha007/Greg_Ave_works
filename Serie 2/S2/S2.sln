@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "JsonzaiWithEmit\App.csproj", "{AEF8E9CD-BD99-445A-A72D-A0E5DFE73B14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializerLibrary", "SerializerLibrary\SerializerLibrary.csproj", "{3B3166B7-593F-42D1-8880-2FA6D095B5FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISerializerInterface", "ISerializerInterface\ISerializerInterface.csproj", "{CEA5B7CA-7882-4734-A1D2-C31B14515761}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEF8E9CD-BD99-445A-A72D-A0E5DFE73B14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEF8E9CD-BD99-445A-A72D-A0E5DFE73B14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEF8E9CD-BD99-445A-A72D-A0E5DFE73B14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEF8E9CD-BD99-445A-A72D-A0E5DFE73B14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B3166B7-593F-42D1-8880-2FA6D095B5FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B3166B7-593F-42D1-8880-2FA6D095B5FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B3166B7-593F-42D1-8880-2FA6D095B5FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B3166B7-593F-42D1-8880-2FA6D095B5FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEA5B7CA-7882-4734-A1D2-C31B14515761}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEA5B7CA-7882-4734-A1D2-C31B14515761}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEA5B7CA-7882-4734-A1D2-C31B14515761}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEA5B7CA-7882-4734-A1D2-C31B14515761}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
