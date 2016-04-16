@@ -3,3 +3,11 @@ C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 2\S2\JsonzaiWi
 C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 2\S2\JsonzaiWithEmit\bin\Debug\JsonzaiWithEmit.pdb
 C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 2\S2\JsonzaiWithEmit\obj\Debug\JsonzaiWithEmit.exe
 C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 2\S2\JsonzaiWithEmit\obj\Debug\JsonzaiWithEmit.pdb
+C:\Users\Tozé\Documents\ISEL\AVE\Greg_Ave_works\Serie 2\S2\JsonzaiWithEmit\bin\Debug\JsonzaiWithEmit.exe.config
+C:\Users\Tozé\Documents\ISEL\AVE\Greg_Ave_works\Serie 2\S2\JsonzaiWithEmit\obj\Debug\JsonzaiWithEmit.exe
+C:\Users\Tozé\Documents\ISEL\AVE\Greg_Ave_works\Serie 2\S2\JsonzaiWithEmit\obj\Debug\JsonzaiWithEmit.pdb
+C:\Users\Tozé\Documents\ISEL\AVE\Greg_Ave_works\Serie 2\S2\JsonzaiWithEmit\bin\Debug\JsonzaiWithEmit.exe
+C:\Users\Tozé\Documents\ISEL\AVE\Greg_Ave_works\Serie 2\S2\JsonzaiWithEmit\bin\Debug\JsonzaiWithEmit.pdb
+C:\Users\Tozé\Documents\ISEL\AVE\Greg_Ave_works\Serie 2\S2\JsonzaiWithEmit\bin\Debug\TestModel.dll
+C:\Users\Tozé\Documents\ISEL\AVE\Greg_Ave_works\Serie 2\S2\JsonzaiWithEmit\bin\Debug\TestModel.pdb
+C:\Users\Tozé\Documents\ISEL\AVE\Greg_Ave_works\Serie 2\S2\JsonzaiWithEmit\obj\Debug\App.csprojResolveAssemblyReference.cache
