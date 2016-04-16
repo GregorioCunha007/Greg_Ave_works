@@ -1,19 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ISerializerInterface;
 using System.Reflection;
 using System.Reflection.Emit;
 
 namespace JsonzaiWithEmit
 {
+    class Student
+    {
+        public string name;
+        public int number;
 
+        public Student(string name, int number)
+        {
+            this.name = name;
+            this.number = number;
+        }
+    }
     class Program
     {
         static void Main(string[] args)
         {
+            Student gustafson = new Student("gustavo", 5044);
+            //CreateSerializer(gustafson);
+            LoadSerializer(gustafson);
+
         }
 
         static void CreateSerializer(object target)
@@ -24,10 +33,70 @@ namespace JsonzaiWithEmit
 
             TypeBuilder tb = mb.DefineType(target.GetType().Name  + "Serializer");
             tb.AddInterfaceImplementation(typeof(ISerializer));
+            MethodBuilder mthd = tb.DefineMethod(
+                "Serialize",
+                MethodAttributes.Public | MethodAttributes.Virtual,
+                typeof(string),
+                new Type[] { typeof(object) });
 
-            FieldInfo[] fields = target.GetType().GetFields();
+            ILGenerator mthdIL = mthd.GetILGenerator();
 
-            for( )
+            /* Cast the target object to a Specified type*/
+            mthdIL.Emit(OpCodes.Ldarg_1);
+            mthdIL.Emit(OpCodes.Castclass, target.GetType());
+            mthdIL.Emit(OpCodes.Stloc_0);
+
+            FieldInfo [] fields = target.GetType().GetFields();
+            int size = fields.Length;
+
+            mthdIL.Emit(OpCodes.Ldloc_1, size * 3 ); // + Nomes + \n por cada 
+            mthdIL.Emit(OpCodes.Newarr, typeof(string));
+            mthdIL.Emit(OpCodes.Stloc_2);
+            int counter = 0;
+
+            foreach( FieldInfo f in fields)
+            {
+                /* Get the field name*/
+                mthdIL.Emit(OpCodes.Ldloc_2);
+                mthdIL.Emit(OpCodes.Ldc_I4_S, counter++);
+                mthdIL.Emit(OpCodes.Ldstr, f.Name + ":");
+                mthdIL.Emit(OpCodes.Stelem_Ref);
+
+                /* Get the field value*/
+                mthdIL.Emit(OpCodes.Ldloc_2);
+                mthdIL.Emit(OpCodes.Ldc_I4_S, counter++);
+                mthdIL.Emit(OpCodes.Ldloc_0);
+                mthdIL.Emit(OpCodes.Ldfld, f);
+
+                // If int we gotta box
+                Type tt = f.GetValue(target).GetType();
+                if ( tt.IsPrimitive && tt != typeof(string))
+                {
+                    mthdIL.Emit(OpCodes.Box,tt);
+                }
+                mthdIL.Emit(OpCodes.Stelem_Ref);
+
+                /* Add the \n */
+                mthdIL.Emit(OpCodes.Ldloc_2);
+                mthdIL.Emit(OpCodes.Ldc_I4_S, counter++);
+                mthdIL.Emit(OpCodes.Ldc_I4_S, 10);
+                mthdIL.Emit(OpCodes.Box,typeof(int));
+                mthdIL.Emit(OpCodes.Stelem_Ref);
+
+            }
+
+            mthdIL.Emit(OpCodes.Ldloc_2);
+            mthdIL.Emit(OpCodes.Call, typeof(System.String).GetMethod("Concat", new Type[1] { typeof(object) }));
+            mthdIL.Emit(OpCodes.Stloc_1);
+            mthdIL.Emit(OpCodes.Ldloc_1);
+            mthdIL.Emit(OpCodes.Ret);
+
+            Type t = tb.CreateType();
+
+            object demo = Activator.CreateInstance(t);
+
+            abuilder.Save(name.Name + ".dll");
+
         }
 
         static void LoadSerializer(object target)
@@ -40,11 +109,8 @@ namespace JsonzaiWithEmit
             object obj = Activator.CreateInstance(types[0]);
 
             MethodInfo[] methodsInDll = obj.GetType().GetMethods();
-
-            foreach (MethodInfo m in methodsInDll)
-            {
-                m.Invoke(obj, new object[] { });
-            }
+            methodsInDll[0].Invoke(obj, new object[] { target });
+            
         }
     }
 }

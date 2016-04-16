@@ -43,18 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISerializer.cs" />
+    <Compile Include="SerializerLib.cs" />
     <Compile Include="EmitUtils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ISerializerInterface\ISerializerInterface.csproj">
-      <Project>{cea5b7ca-7882-4734-a1d2-c31b14515761}</Project>
-      <Name>ISerializerInterface</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
