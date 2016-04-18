@@ -11,3 +11,5 @@ C:\Users\Tozé\Documents\ISEL\AVE\Greg_Ave_works\Serie 2\S2\JsonzaiWithEmit\bin\
 C:\Users\Tozé\Documents\ISEL\AVE\Greg_Ave_works\Serie 2\S2\JsonzaiWithEmit\bin\Debug\TestModel.dll
 C:\Users\Tozé\Documents\ISEL\AVE\Greg_Ave_works\Serie 2\S2\JsonzaiWithEmit\bin\Debug\TestModel.pdb
 C:\Users\Tozé\Documents\ISEL\AVE\Greg_Ave_works\Serie 2\S2\JsonzaiWithEmit\obj\Debug\App.csprojResolveAssemblyReference.cache
+C:\Users\Tozé\Documents\ISEL\AVE\Greg_Ave_works\Serie 2\S2\JsonzaiWithEmit\bin\Debug\JsonfierV2.dll
+C:\Users\Tozé\Documents\ISEL\AVE\Greg_Ave_works\Serie 2\S2\JsonzaiWithEmit\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll

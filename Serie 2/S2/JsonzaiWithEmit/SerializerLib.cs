@@ -19,5 +19,17 @@ namespace JsonzaiWithEmit
         {
             return serializers.Count;
         }
+
+        public bool Exists(object target)
+        {
+            foreach(ISerializer s in serializers)
+            {
+                if (s.GetType().FullName.Equals(target.GetType().FullName + "Serializer"))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
