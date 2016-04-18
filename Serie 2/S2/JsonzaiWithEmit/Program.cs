@@ -72,17 +72,11 @@ namespace JsonzaiWithEmit
             mthdIL.Emit(OpCodes.Newobj, typeof(StringBuilder).GetConstructor(new Type[] { }));
             mthdIL.Emit(OpCodes.Stloc_1);
 
-            mthdIL.Emit(OpCodes.Ldloc_1);
-            mthdIL.Emit(OpCodes.Ldstr, "{");
-            mthdIL.Emit(OpCodes.Callvirt, typeof(StringBuilder).GetMethod("Append", new Type[] { typeof(string) }));
-            mthdIL.Emit(OpCodes.Pop);
+            StartObj(mthdIL);
 
             BuildObject(mthdIL, target);
 
-            mthdIL.Emit(OpCodes.Ldloc_1);
-            mthdIL.Emit(OpCodes.Ldstr, "}");
-            mthdIL.Emit(OpCodes.Callvirt, typeof(StringBuilder).GetMethod("Append", new Type[] { typeof(string) }));
-            mthdIL.Emit(OpCodes.Pop);
+            EndObj(mthdIL);
 
             mthdIL.Emit(OpCodes.Ldloc_1);
             mthdIL.Emit(OpCodes.Callvirt, typeof(StringBuilder).GetMethod("ToString", new Type[] { }));
@@ -98,64 +92,58 @@ namespace JsonzaiWithEmit
             mthdIL.Emit(OpCodes.Castclass, target.GetType());
             mthdIL.Emit(OpCodes.Stloc_0);
 
-            if (target.GetType().IsArray || target.GetType() == typeof(string[]))
+            FieldInfo [] fields = target.GetType().GetFields();
+
+            foreach (FieldInfo f in fields)
             {
-                mthdIL.Emit(OpCodes.Ldloc_1);
-                mthdIL.Emit(OpCodes.Ldstr, "[");
-                mthdIL.Emit(OpCodes.Callvirt, typeof(StringBuilder).GetMethod("Append", new Type[] { typeof(string) }));
-                mthdIL.Emit(OpCodes.Pop);
-                IEnumerable seq = (IEnumerable)target;
-                IEnumerator it = seq.GetEnumerator();
-                while (it.MoveNext())
-                {
-                    if (it.Current.GetType().IsPrimitive)
-                    {
-                        mthdIL.Emit(OpCodes.Ldc_I4, (byte)it.Current);
-                        if(it.Current.GetType() != typeof(string))
-                        {
-                            mthdIL.Emit(OpCodes.Box);
-                        }
-                        mthdIL.Emit(OpCodes.Callvirt, typeof(StringBuilder).GetMethod("Append", new Type[] { typeof(string) }));
-                        mthdIL.Emit(OpCodes.Pop);
-                    }
-                    else
-                    {
-                        BuildObject(mthdIL, it.Current);
-                    } 
-                    mthdIL.Emit(OpCodes.Ldstr, ",");
-                    mthdIL.Emit(OpCodes.Callvirt, typeof(StringBuilder).GetMethod("Append", new Type[] { typeof(string) }));
-                    mthdIL.Emit(OpCodes.Pop);
-                }
-                mthdIL.Emit(OpCodes.Ldloc_1);
-                mthdIL.Emit(OpCodes.Ldstr, "]");
-                mthdIL.Emit(OpCodes.Callvirt, typeof(StringBuilder).GetMethod("Append", new Type[] { typeof(string) }));
-                mthdIL.Emit(OpCodes.Pop);
-            }
-   
-            else
-            {
-                FieldInfo[] fields = target.GetType().GetFields();
+               /* Get the field name*/
+               FieldName(mthdIL,f);
 
-                foreach (FieldInfo f in fields)
-                {
-                    /* Get the field name*/
-                    mthdIL.Emit(OpCodes.Ldloc_1);
-                    mthdIL.Emit(OpCodes.Ldstr, f.Name + ":");
-                    mthdIL.Emit(OpCodes.Callvirt, typeof(StringBuilder).GetMethod("Append", new Type[] { typeof(string) }));
-                    mthdIL.Emit(OpCodes.Pop);
+               /* Call ToJson */
+               mthdIL.Emit(OpCodes.Ldloc_1); // StringBuilder
+               mthdIL.Emit(OpCodes.Ldfld, f);
+               mthdIL.Emit(OpCodes.Callvirt, typeof(Serie1.Jsonfier).GetMethod("ToJson", new Type[] { typeof(object) }));
+               mthdIL.Emit(OpCodes.Callvirt, typeof(StringBuilder).GetMethod("Append", new Type[] { typeof(string) }));
+               mthdIL.Emit(OpCodes.Pop);
 
-                    /* Get the field value*/
-                    BuildObject(mthdIL, f.GetValue(target));
+               /* Add the \n */
+               NextLine(mthdIL);
 
-                    /* Add the \n */
-                    mthdIL.Emit(OpCodes.Ldloc_1);
-                    mthdIL.Emit(OpCodes.Ldc_I4_S, 10);
-                    mthdIL.Emit(OpCodes.Box, typeof(int));
-                    mthdIL.Emit(OpCodes.Callvirt, typeof(StringBuilder).GetMethod("Append", new Type[] { typeof(string) }));
-                    mthdIL.Emit(OpCodes.Pop);
+             } 
+        }
 
-                }
-            }
+        
+        static void StartObj(ILGenerator mthdIL)
+        {
+            mthdIL.Emit(OpCodes.Ldloc_1);
+            mthdIL.Emit(OpCodes.Ldstr, "{");
+            mthdIL.Emit(OpCodes.Callvirt, typeof(StringBuilder).GetMethod("Append", new Type[] { typeof(string) }));
+            mthdIL.Emit(OpCodes.Pop);
+        }
+
+        static void EndObj(ILGenerator mthdIL)
+        {
+            mthdIL.Emit(OpCodes.Ldloc_1);
+            mthdIL.Emit(OpCodes.Ldstr, "}");
+            mthdIL.Emit(OpCodes.Callvirt, typeof(StringBuilder).GetMethod("Append", new Type[] { typeof(string) }));
+            mthdIL.Emit(OpCodes.Pop);
+        }
+
+        static void NextLine(ILGenerator mthdIL)
+        {
+            mthdIL.Emit(OpCodes.Ldloc_1);
+            mthdIL.Emit(OpCodes.Ldc_I4_S, 10);
+            mthdIL.Emit(OpCodes.Box, typeof(int));
+            mthdIL.Emit(OpCodes.Callvirt, typeof(StringBuilder).GetMethod("Append", new Type[] { typeof(string) }));
+            mthdIL.Emit(OpCodes.Pop);
+        }
+
+        static void FieldName(ILGenerator mthdIL, FieldInfo f)
+        {
+            mthdIL.Emit(OpCodes.Ldloc_1);
+            mthdIL.Emit(OpCodes.Ldstr, f.Name + ":");
+            mthdIL.Emit(OpCodes.Callvirt, typeof(StringBuilder).GetMethod("Append", new Type[] { typeof(string) }));
+            mthdIL.Emit(OpCodes.Pop);
         }
     }
 }
