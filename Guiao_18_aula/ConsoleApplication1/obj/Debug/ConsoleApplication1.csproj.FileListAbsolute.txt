@@ -1,0 +1,6 @@
+C:\Users\Tozé\Documents\ISEL\AVE\Guiao_18_aula\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\Tozé\Documents\ISEL\AVE\Guiao_18_aula\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+C:\Users\Tozé\Documents\ISEL\AVE\Guiao_18_aula\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\Tozé\Documents\ISEL\AVE\Guiao_18_aula\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Tozé\Documents\ISEL\AVE\Guiao_18_aula\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\Tozé\Documents\ISEL\AVE\Guiao_18_aula\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
