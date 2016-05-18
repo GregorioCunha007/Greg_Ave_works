@@ -1,0 +1,6 @@
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\bin\Debug\MapperSeries.exe.config
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\obj\Debug\MapperSeries.csprojResolveAssemblyReference.cache
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\bin\Debug\MapperSeries.exe
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\bin\Debug\MapperSeries.pdb
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\obj\Debug\MapperSeries.exe
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\obj\Debug\MapperSeries.pdb
