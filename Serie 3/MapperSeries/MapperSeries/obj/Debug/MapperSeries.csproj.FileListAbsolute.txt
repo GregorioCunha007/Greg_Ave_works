@@ -1,6 +1,17 @@
+<<<<<<< HEAD
 C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\bin\Debug\MapperSeries.exe.config
 C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\obj\Debug\MapperSeries.csprojResolveAssemblyReference.cache
 C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\bin\Debug\MapperSeries.exe
 C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\bin\Debug\MapperSeries.pdb
 C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\obj\Debug\MapperSeries.exe
 C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\obj\Debug\MapperSeries.pdb
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\bin\Debug\TestModelMapper.dll
+=======
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\bin\Debug\MapperSeries.exe.config
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\obj\Debug\MapperSeries.csprojResolveAssemblyReference.cache
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\bin\Debug\MapperSeries.exe
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\bin\Debug\MapperSeries.pdb
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\obj\Debug\MapperSeries.exe
+C:\Users\Pedro\Desktop\1\Isel\6 SEMESTRE\AVE\Greg_Ave_works\Serie 3\MapperSeries\MapperSeries\obj\Debug\MapperSeries.pdb
+>>>>>>> 46ca7f29fa30d89964ae900f26ff0314af3408f0
