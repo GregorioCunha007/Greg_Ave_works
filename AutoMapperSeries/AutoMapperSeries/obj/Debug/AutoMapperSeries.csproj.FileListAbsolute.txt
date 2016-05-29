@@ -1,0 +1,7 @@
+C:\Users\Pedro\Desktop\SAFE\AutoMapperSeries\AutoMapperSeries\bin\Debug\AutoMapperSeries.exe.config
+C:\Users\Pedro\Desktop\SAFE\AutoMapperSeries\AutoMapperSeries\bin\Debug\AutoMapperSeries.exe
+C:\Users\Pedro\Desktop\SAFE\AutoMapperSeries\AutoMapperSeries\bin\Debug\AutoMapperSeries.pdb
+C:\Users\Pedro\Desktop\SAFE\AutoMapperSeries\AutoMapperSeries\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Pedro\Desktop\SAFE\AutoMapperSeries\AutoMapperSeries\bin\Debug\TestModelMapper.dll
+C:\Users\Pedro\Desktop\SAFE\AutoMapperSeries\AutoMapperSeries\obj\Debug\AutoMapperSeries.exe
+C:\Users\Pedro\Desktop\SAFE\AutoMapperSeries\AutoMapperSeries\obj\Debug\AutoMapperSeries.pdb
